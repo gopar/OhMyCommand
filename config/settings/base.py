@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 ]
 
 THIRD_PARTY = [
-
+    'django_extensions',
+    'rest_framework',
 ]
 
 PROJ_APPS = [
