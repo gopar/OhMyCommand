@@ -5,9 +5,11 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.dev")
 import django
 django.setup()
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from apps.commands.models import Command
+
+User = get_user_model()
 
 
 def populate():
