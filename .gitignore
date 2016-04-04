@@ -58,3 +58,4 @@ docs/_build/
 target/
 
 db.sqlite3
+/.dir-locals.el
