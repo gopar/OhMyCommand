@@ -1,8 +1,9 @@
 from django.core.urlresolvers import reverse
 from django.contrib.auth import get_user_model
 
-from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
+from rest_framework.authtoken.models import Token
+from rest_framework.test import APITestCase, APIClient
 
 from population_script import add_user, add_command
 
@@ -10,10 +11,10 @@ from apps.commands.models import Command
 User = get_user_model()
 
 
-def create_client(data, url, get=True, kwargs=None):
+def create_client(user, url, get=True, kwargs=None):
+    token = Token.objects.get_or_create(user=user)[0]
     client = APIClient()
-    client.login(username=data['username'],
-                 password=data['password'])
+    client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
     if get:
         return client.get(url, kwargs=kwargs or None)
     return client.post(url, data=kwargs or None)
@@ -24,20 +25,20 @@ class TestUserAPI(APITestCase):
         self.user_data = {'username': 'username', 'password': 'password',
                           'first_name': 'first', 'last_name': 'last',
                           'email': 'email@email.com'}
-        add_user(**self.user_data)
+        self.user = add_user(**self.user_data)
 
     def test_GET_user(self):
-        response = create_client(self.user_data, reverse('user-list'))
+        response = create_client(self.user, reverse('user-list'))
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(User.objects.count(), 1)
 
     def test_GET_user_detail(self):
         response = create_client(
-            self.user_data,
-            reverse('user-detail', kwargs={'pk': User.objects.first().pk}))
+            self.user,
+            reverse('user-detail', kwargs={'pk': self.user.pk}))
 
-        updated_dict = {'pk': User.objects.first().pk}
+        updated_dict = {'pk': self.user.pk}
         updated_dict.update(self.user_data)
         del updated_dict['password']
 
@@ -47,17 +48,17 @@ class TestUserAPI(APITestCase):
     def test_POST_user_list(self):
         temp = {'username': 'use', 'password': 'pass', 'email': 'e@email.com'}
         response = create_client(
-            self.user_data,
+            self.user,
             reverse('user-list'), get=False, kwargs=temp)
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 2)
-        # TODO: Test when we get token keys
+        self.assertIn('token', response.data)
 
     def test_POST_user_detail(self):
+        token = Token.objects.get_or_create(user=self.user)[0]
         client = APIClient()
-        client.login(username=self.user_data['username'],
-                     password=self.user_data['password'])
+        client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
         name = self.user_data['first_name']
         user = User.objects.filter(first_name=name)[0]
@@ -77,20 +78,20 @@ class TestCommandAPI(APITestCase):
         self.data = {'username': 'username', 'password': 'password',
                      'first_name': 'first', 'last_name': 'last',
                      'email': 'email@email.com'}
-        user = add_user(**self.data)
-        self.c_data = {'command': 'ls -al', 'user': user,
+        self.user = add_user(**self.data)
+        self.c_data = {'command': 'ls -al', 'user': self.user,
                        'note': '', 'os': '', 'version': ''}
         self.command = add_command(**self.c_data)
 
     def test_GET_command_list(self):
-        response = create_client(self.data, reverse('commands-list'))
+        response = create_client(self.user, reverse('commands-list'))
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), Command.objects.count())
 
     def test_GET_command_detail(self):
         response = create_client(
-            self.data,
+            self.user,
             reverse('commands-detail', kwargs={'pk': self.command.pk}))
         temp = {'id': self.command.pk}
         temp.update(self.c_data)
@@ -102,7 +103,7 @@ class TestCommandAPI(APITestCase):
     def test_POST_command_list(self):
         data = {'command': 'command', 'os': 'L', 'note': 'note',
                 'version': '1', 'user': self.c_data['user'].pk}
-        response = create_client(self.data, reverse('commands-list'),
+        response = create_client(self.user, reverse('commands-list'),
                                  get=False, kwargs=data)
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -110,9 +111,9 @@ class TestCommandAPI(APITestCase):
 
     def test_POST_command_detail(self):
         data = {'os': 'W'}
+        token = Token.objects.get_or_create(user=self.user)[0]
         client = APIClient()
-        client.login(username=self.data['username'],
-                     password=self.data['password'])
+        client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
         response = client.patch(
             reverse('commands-detail', kwargs={'pk': self.command.pk}),
             data=data)
