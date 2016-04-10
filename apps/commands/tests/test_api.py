@@ -16,8 +16,8 @@ def create_client(user, url, get=True, kwargs=None):
     client = APIClient()
     client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
     if get:
-        return client.get(url, kwargs=kwargs or None)
-    return client.post(url, data=kwargs or None)
+        return client.get(url, kwargs=kwargs)
+    return client.post(url, data=kwargs)
 
 
 class TestUserAPI(APITestCase):
