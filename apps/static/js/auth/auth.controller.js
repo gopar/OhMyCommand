@@ -26,7 +26,7 @@
             resource.$promise
                 .then(function(response) {
                     $localStorage.token = response.token;
-                    // TODO: Remap to diff page using $location.path('/');
+                    $location.path('/commands');
                 })
                 .catch(function(error) {
                     console.log(error);
@@ -35,6 +35,7 @@
 
         function logout() {
             $localStorage.token = '';
+            $location.path('/');
         }
 
         function register(user) {
@@ -50,11 +51,7 @@
         }
 
         function isLoggedIn() {
-            if ($localStorage.hasOwnProperty('token')) {
-                if ($localStorage.token != '')
-                    return true;
-            }
-            return false;
+            return authService.isLoggedIn();
         }
     }
 })();

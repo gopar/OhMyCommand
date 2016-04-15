@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -9,7 +9,16 @@
 
     function configFunction($routeProvider, STATIC_URL) {
         $routeProvider.when('/commands', {
-            templateUrl: STATIC_URL + '/commands/commands.html'
+            templateUrl: STATIC_URL + '/commands/commands.html',
+            controller: 'CommandsController',
+            controllerAs: 'vm',
+            resolve: {isLoggedIn: resolveUser}
         });
+    }
+
+    resolveUser.$inject = ['authService'];
+
+    function resolveUser(authService) {
+        return authService.isLoggedIn();
     }
 })();

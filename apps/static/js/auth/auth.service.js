@@ -5,12 +5,13 @@
         .module('app.auth')
         .factory('authService', authService);
 
-    authService.$inject = ['$resource'];
+    authService.$inject = ['$resource', '$localStorage'];
 
-    function authService($resource) {
+    function authService($resource, $localStorage) {
         var service = {
             login: login,
-            register: register
+            register: register,
+            isLoggedIn: isLoggedIn
         };
         return service;
 
@@ -28,6 +29,14 @@
                 password: user.password,
                 email: user.email
             });
+        }
+
+        function isLoggedIn() {
+            if ($localStorage.hasOwnProperty('token')) {
+                if ($localStorage.token != '')
+                    return true;
+            }
+            return false;
         }
     }
 })();
