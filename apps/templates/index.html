@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Oh My Command!</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
+    </head>
+    <body>
+        <nav ng-controller="AuthController as vm" class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#/">Oh My Command!</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#/login" ng-hide="vm.isLoggedIn()">Log in</a></li>
+                        <li><a href="" ng-click="vm.logout()" ng-show="vm.isLoggedIn()">Log out</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div ng-view class="container"></div>
+
+        <!--Third-party JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-route.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.3/angular-resource.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+        <!-- Custom files -->
+        <script src="{% static 'js/app.module.js' %}"></script>
+        <script src="{% static 'js/app.config.js' %}"></script>
+        <!-- Auth -->
+        <script src="{% static 'js/auth/auth.module.js' %}"></script>
+        <script src="{% static 'js/auth/config.route.js' %}"></script>
+        <script src="{% static 'js/auth/auth.service.js' %}"></script>
+        <script src="{% static 'js/auth/auth.controller.js' %}"></script>
+        <!-- Core -->
+        <script src="{% static 'js/core/core.module.js' %}"></script>
+        <script src="{% static 'js/core/constants.js' %}"></script>
+        <!-- Commands -->
+        <script src="{% static 'js/commands/commands.module.js' %}"></script>
+        <script src="{% static 'js/commands/config.route.js' %}"></script>
+        <!-- Landing -->
+        <script src="{% static 'js/landing/landing.module.js' %}"></script>
+        <script src="{% static 'js/landing/config.route.js' %}"></script>
+    </body>
+</html>
