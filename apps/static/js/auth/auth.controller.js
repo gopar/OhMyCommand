@@ -26,6 +26,7 @@
             resource.$promise
                 .then(function(response) {
                     $localStorage.token = response.token;
+                    $localStorage.username = user.username;
                     $location.path('/commands');
                 })
                 .catch(function(error) {
@@ -35,6 +36,7 @@
 
         function logout() {
             $localStorage.token = '';
+            $localStorage.username = '';
             $location.path('/');
         }
 
@@ -43,7 +45,7 @@
             resource.$promise
                 .then(function(response) {
                     $localStorage.token = response.token;
-                    console.log(response);
+                    $localStorage.username = user.username;
                 })
                 .catch(function(error) {
                     console.log(error);

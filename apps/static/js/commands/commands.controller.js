@@ -6,9 +6,9 @@
         .controller('CommandsController', CommandsController);
 
     // 'isLoggedIn' is passed from the config.route.js
-    CommandsController.$inject = ['$location', 'isLoggedIn', 'CommandService', 'UserService'];
+    CommandsController.$inject = ['$location', '$localStorage', 'isLoggedIn', 'CommandService', 'UserService'];
 
-    function CommandsController($location, isLoggedIn, CommandService, UserService) {
+    function CommandsController($location, $localStorage, isLoggedIn, CommandService, UserService) {
         var vm = this;
 
         if (!isLoggedIn) {
@@ -17,6 +17,7 @@
         }
 
         vm.commands = '';
+        vm.username = $localStorage.username;
 
         commands();
 
