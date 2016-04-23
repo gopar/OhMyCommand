@@ -22,6 +22,7 @@
 
         commands();
 
+        ////////////////////
         function commands() {
             var query = CommandService.query();
             query.$promise
@@ -38,11 +39,11 @@
             for (i = 0; i < vm.commands.length; i++)
                 if(vm.commands[i].id === command.id)
                     break;
-            vm.commands.splice(i, 1);
 
             var deleteQuery = CommandService.delete({id: command.id});
             deleteQuery.$promise
                 .then(function(data) {
+                    vm.commands.splice(i, 1);
                     console.log(data);
                 }).catch(function(error) {
                     console.log(error);
