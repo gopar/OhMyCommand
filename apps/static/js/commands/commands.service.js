@@ -8,11 +8,11 @@
 
     CommandService.$inject = ['$resource'];
     function CommandService($resource) {
-        return $resource('/api/commands/:id');
+        return $resource('/api/commands/:id/');
     }
 
     UserService.$inject = ['$resource'];
     function UserService($resource) {
-        return $resource('/api/users/:id');
+        return $resource('/api/users/:id/');
     }
 })();
