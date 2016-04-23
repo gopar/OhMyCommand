@@ -5,6 +5,7 @@
         <title>Oh My Command!</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
     </head>
     <body>
@@ -38,6 +39,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-route.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.3/angular-resource.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+        <script src="{% static 'js/angular-clipboard/angular-clipboard.js' %}"></script>
         <!-- Custom files -->
         <script src="{% static 'js/app.module.js' %}"></script>
         <script src="{% static 'js/app.config.js' %}"></script>
@@ -53,6 +55,7 @@
         <script src="{% static 'js/commands/commands.module.js' %}"></script>
         <script src="{% static 'js/commands/config.route.js' %}"></script>
         <script src="{% static 'js/commands/commands.controller.js' %}"></script>
+        <script src="{% static 'js/commands/commands.service.js' %}"></script>
         <!-- Landing -->
         <script src="{% static 'js/landing/landing.module.js' %}"></script>
         <script src="{% static 'js/landing/config.route.js' %}"></script>

@@ -6,6 +6,7 @@
         'ngRoute',
         'ngResource',
         'ngStorage',
+        'angular-clipboard',
         // Custom modules
         'app.auth',
         'app.core',

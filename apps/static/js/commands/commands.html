@@ -1,1 +1,51 @@
-<h1>Commands</h1>
+<div class="page-header">
+    <center>
+        <h1 class="">Welcome {{ vm.username }}! Here are your Commands</h1>
+    </center>
+</div>
+
+<div class="jumbotron">
+    <form class="form-inline">
+        How many results to display:
+        <input ng-model="quantity" class="form-control"/>
+        Search:
+        <input ng-model="query" class="form-control" />
+    </form>
+</div>
+
+<table class="table table-responsive table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Command</th>
+            <th>OS</th>
+            <th>Version</th>
+            <th>Note</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tr ng-repeat="command in vm.commands | limitTo:quantity | filter:query">
+        <td>
+            <div ng-bind="command.command"></div>
+        </td>
+        <td>
+            {{ command.os }}
+        </td>
+        <td>
+            {{ command.version }}
+        </td>
+        <td>
+            {{ command.note }}
+        </td>
+        <td>
+            <center>
+                <a title="Delete">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
+                &nbsp;&nbsp;
+                <a title="Copy command to clipboard" clipboard text="command.command">
+                    <i class="fa fa-clipboard" aria-hidden="true"></i>
+                </a>
+            </center>
+        </td>
+    </tr>
+</table>
