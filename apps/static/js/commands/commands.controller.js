@@ -18,6 +18,7 @@
 
         vm.commands = '';
         vm.username = $localStorage.username;
+        vm.deleteCommand = deleteCommand;
 
         commands();
 
@@ -30,6 +31,14 @@
                     console.log(error);
                     vm.commands = error;
                 });
+        }
+
+        function deleteCommand(command) {
+            var i;
+            for(i = 0; i < vm.commands.length; i++)
+                if(vm.commands[i].id === command.id)
+                    break;
+            vm.commands.splice(i, 1);
         }
     }
 })();
