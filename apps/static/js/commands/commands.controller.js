@@ -20,6 +20,20 @@
         vm.username = $localStorage.username;
         vm.deleteCommand = deleteCommand;
 
+        vm.new = {
+            command: '',
+            os:  '',
+            version: '',
+            note: ''
+        };
+
+        vm.edit = {
+            command: '',
+            os:  '',
+            version: '',
+            note: ''
+        };
+
         commands();
 
         ////////////////////

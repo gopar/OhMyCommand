@@ -29,13 +29,13 @@
                     <div class="form-group" >
                         <label for="command" class="col-sm-2 control-label">Command:</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="newCommand" ng-model="newCommand">
+                            <input type="text" class="form-control" id="newCommand" ng-model="vm.new.command">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="os" class="col-sm-1 control-label">OS:</label>
                         <div class="col-sm-12">
-                            <select class="form-control" id="os" ng-model="newOs">
+                            <select class="form-control" id="os" ng-model="vm.new.os">
                                 <option value="A">Any</option>
                                 <option value="L">Linux</option>
                                 <option value="W">Windows</option>
@@ -47,13 +47,13 @@
                     <div class="form-group">
                         <label for="version" class="col-sm-1 control-label">Version:</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="newVersion" ng-model="newVersion">
+                            <input type="text" class="form-control" id="newVersion" ng-model="vm.new.version">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="note" class="col-sm-1 control-label">Note:</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="newNote" ng-model="newNote">
+                            <input type="text" class="form-control" id="newNote" ng-model="vm.new.note">
                         </div>
                     </div>
                 </form>
