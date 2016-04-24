@@ -59,7 +59,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-primary" ng-click="vm.newCommand()">Submit</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -76,7 +76,7 @@
             <th>Operations</th>
         </tr>
     </thead>
-    <tr ng-repeat="command in vm.commands | limitTo:quantity | filter:query">
+    <tr ng-repeat="command in vm.commands | orderBy:'-id' | limitTo:quantity | filter:query ">
         <td>
             <div ng-bind="command.command"></div>
         </td>

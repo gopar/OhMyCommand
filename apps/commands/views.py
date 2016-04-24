@@ -17,6 +17,12 @@ class CommandViewSet(ModelViewSet):
     def get_queryset(self):
         return Command.objects.filter(user=self.request.user)
 
+    def perform_create(self, serializer):
+        """
+        We manually save the user based on who issued the request
+        """
+        serializer.save(user=self.request.user)
+
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
