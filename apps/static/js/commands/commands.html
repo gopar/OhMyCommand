@@ -5,12 +5,65 @@
 </div>
 
 <div class="jumbotron">
-    <form class="form-inline">
+    <form class="form-inline" role="form">
         How many results to display:
         <input ng-model="quantity" class="form-control"/>
         Search:
         <input ng-model="query" class="form-control" />
     </form>
+    <br/>
+    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#newCommandModal">Add a command</button>
+</div>
+
+<!-- Modal -->
+<div id="newCommandModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Enter New Command</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" >
+                        <label for="command" class="col-sm-2 control-label">Command:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="newCommand" ng-model="newCommand">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="os" class="col-sm-1 control-label">OS:</label>
+                        <div class="col-sm-12">
+                            <select class="form-control" id="os" ng-model="newOs">
+                                <option value="A">Any</option>
+                                <option value="L">Linux</option>
+                                <option value="W">Windows</option>
+                                <option value="M">Mac</option>
+                                <option value="O">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="version" class="col-sm-1 control-label">Version:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="newVersion" ng-model="newVersion">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="note" class="col-sm-1 control-label">Note:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="newNote" ng-model="newNote">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <table class="table table-responsive table-striped table-bordered">
