@@ -5,9 +5,9 @@
         .module('app.auth')
         .controller('AuthController', AuthController);
 
-    AuthController.$inject = ['$location', '$localStorage', 'authService'];
+    AuthController.$inject = ['$location', '$localStorage', 'authService', 'notifyService'];
 
-    function AuthController($location, $localStorage, authService) {
+    function AuthController($location, $localStorage, authService, notifyService) {
         var vm = this;
 
         vm.login = login;

@@ -6,9 +6,9 @@
         .controller('CommandsController', CommandsController);
 
     // 'isLoggedIn' is passed from the config.route.js
-    CommandsController.$inject = ['$location', '$localStorage', 'isLoggedIn', 'CommandService', 'UserService'];
+    CommandsController.$inject = ['$location', '$localStorage', '$timeout', 'isLoggedIn', 'CommandService', 'UserService', 'notifyService'];
 
-    function CommandsController($location, $localStorage, isLoggedIn, CommandService, UserService) {
+    function CommandsController($location, $localStorage, $timeout, isLoggedIn, CommandService, UserService, notifyService) {
         var vm = this;
 
         if (!isLoggedIn) {
@@ -82,6 +82,10 @@
                 .then(function(data) {
                     vm.commands.unshift(data);
                     $('#newCommandModal').modal('hide');
+                    notifyService.display('Added New Command');
+                    $timeout(function() {
+                        notifyService.showMessage = false;
+                    }, 3000);
                 })
                 .catch(function(error) {
                     console.log(error);

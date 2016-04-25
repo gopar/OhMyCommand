@@ -30,6 +30,13 @@
             </div>
         </nav>
 
+        <div class="container" ng-controller="NotifyController as vm">
+            <div class="alert alert-success" ng-show="vm.notifyService.showMessage">
+                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong ng-bind="vm.notifyService.message"></strong>
+            </div>
+        </div>
+
         <div ng-view class="container"></div>
 
         <!--Third-party JS-->
@@ -59,5 +66,9 @@
         <!-- Landing -->
         <script src="{% static 'js/landing/landing.module.js' %}"></script>
         <script src="{% static 'js/landing/config.route.js' %}"></script>
+        <!-- Notify -->
+        <script src="{% static 'js/notify/notify.module.js' %}"></script>
+        <script src="{% static 'js/notify/notify.controller.js' %}"></script>
+        <script src="{% static 'js/notify/notify.service.js' %}"></script>
     </body>
 </html>

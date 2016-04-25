@@ -12,5 +12,6 @@
         'app.core',
         'app.commands',
         'app.landing',
+        'app.notify',
     ]);
 })();
