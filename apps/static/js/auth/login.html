@@ -1,3 +1,9 @@
+<div ng-messages="vm.user.error">
+    <div class="alert alert-warning" ng-message="non_field_errors">
+        <a class="close" ng-click="vm.user.error = ''" aria-label="close">&times;</a>
+        {{ vm.user.error.non_field_errors[0] }}
+    </div>
+</div>
 <form ng-submit="vm.login(vm.user)" class="form-signin">
     <h2 class="form-signin-heading">Login</h2>
     <input ng-model="vm.user.username" type="text" class="form-control" placeholder="Username" required autofocus>

@@ -18,7 +18,8 @@
         vm.user = {
             username: '',
             email: '',
-            password: ''
+            password: '',
+            error: ''
         };
 
         function login(user) {
@@ -30,7 +31,7 @@
                     $location.path('/commands');
                 })
                 .catch(function(error) {
-                    console.log(error);
+                    vm.user.error = error.data;
                 });
         }
 
