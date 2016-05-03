@@ -2,4 +2,5 @@
 #https://github.com/gopar/reqpy
 -r base.txt
 django-extensions==1.6.1
+selenium==2.53.2
 six==1.10.0
