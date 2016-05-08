@@ -69,5 +69,7 @@ class UserStoryTest(StaticLiveServerTestCase):
         # Focus back to main page
         self.browser.switch_to.default_content()
 
+        self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
         import time;time.sleep(5)
         self.fail('finish making tests')

@@ -8,7 +8,33 @@
 
     CommandService.$inject = ['$resource'];
     function CommandService($resource) {
-        return $resource('/api/commands/:id/');
+        return {
+            command: function(token) {
+                return $resource('/api/commands/:id/', null, {
+                    query: {
+                        method: 'GET',
+                        isArray: true,
+                        headers: {
+                            'Authorization': 'Token ' + token
+                        }
+                    },
+                    save: {
+                        method: 'POST',
+                        isArray: false,
+                        headers: {
+                            'Authorization': 'Token ' + token
+                        }
+                    },
+                    delete: {
+                        method: 'DELETE',
+                        isArray: false,
+                        headers: {
+                            'Authorization': 'Token ' + token
+                        }
+                    }
+                });
+            }
+        };
     }
 
     UserService.$inject = ['$resource'];

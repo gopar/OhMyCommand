@@ -15,7 +15,6 @@
         ////////////////////
         function display(m) {
             vm.message = m;
-            console.log(vm.message);
             vm.showMessage = true;
         }
     }

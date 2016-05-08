@@ -39,7 +39,7 @@
 
         ////////////////////
         function commands() {
-            var query = CommandService.query();
+            var query = CommandService.command($localStorage.token).query();
             query.$promise
                 .then(function(data) {
                     vm.commands = data;
@@ -55,11 +55,10 @@
                 if(vm.commands[i].id === command.id)
                     break;
 
-            var deleteQuery = CommandService.delete({id: command.id});
-            deleteQuery.$promise
+            var query = CommandService.command($localStorage.token).delete({id: command.id});
+            query.$promise
                 .then(function(data) {
                     vm.commands.splice(i, 1);
-                    console.log(data);
                 }).catch(function(error) {
                     console.log(error);
                 });
@@ -70,7 +69,7 @@
             if (vm.new.command === '')
                 return;
 
-            var query = CommandService.save({
+            var query = CommandService.command($localStorage.token).save({
                 command: vm.new.command,
                 os: vm.new.os,
                 version: vm.new.version,
