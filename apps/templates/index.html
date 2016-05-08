@@ -23,6 +23,7 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a class="nav navbar-left" href="#/commands" ng-if="vm.isLoggedIn()">Commands</a></li>
                         <li><a href="#/login" ng-hide="vm.isLoggedIn()">Log in</a></li>
                         <li><a href="" ng-click="vm.logout()" ng-show="vm.isLoggedIn()">Log out</a></li>
                     </ul>
