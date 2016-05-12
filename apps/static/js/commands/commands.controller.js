@@ -20,6 +20,8 @@
         vm.username = $localStorage.username;
         vm.deleteCommand = deleteCommand;
         vm.newCommand = newCommand;
+        vm.updateCommand = updateCommand;
+        vm.copyCommand = copyCommand;
 
         vm.new = {
             command: '',
@@ -73,8 +75,7 @@
                 command: vm.new.command,
                 os: vm.new.os,
                 version: vm.new.version,
-                note: vm.new.note,
-                user: $localStorage.token
+                note: vm.new.note
             });
 
             query.$promise
@@ -89,6 +90,40 @@
                 .catch(function(error) {
                     console.log(error);
                 });
+        }
+
+        function updateCommand() {
+            var i;
+            for(i = 0; i < vm.commands.length; i++)
+                if (vm.commands[i].id === vm.edit.id)
+                    break;
+            // No reason to send update request if objects are still the same
+            if (angular.equals(vm.commands[i], vm.edit))
+                return;
+
+            var query = CommandService.command($localStorage.token).update({id: vm.edit.id}, {
+                command: vm.edit.command,
+                os: vm.edit.os,
+                version: vm.edit.version,
+                note: vm.edit.note
+            });
+
+            query.$promise
+                .then(function(response) {
+                    vm.commands[i] = vm.edit;
+                    $('#updateCommandModal').modal('hide');
+                    notifyService.display('Updated Command');
+                    $timeout(function() {
+                        notifyService.showMessage = false;
+                    }, 3000);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        }
+
+        function copyCommand(command) {
+            vm.edit = angular.copy(command);
         }
     }
 })();

@@ -4,6 +4,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
+from population_script import add_command
 
 User = get_user_model()
 
@@ -16,6 +17,9 @@ class UserStoryTest(StaticLiveServerTestCase):
                     first_name="Daniel", last_name="Gopar")
         user.set_password('password')
         user.save()
+        add_command('ls', user)
+        add_command('rm', user)
+        add_command('tree', user)
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(3)
 

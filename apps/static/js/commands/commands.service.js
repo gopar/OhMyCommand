@@ -31,6 +31,13 @@
                         headers: {
                             'Authorization': 'Token ' + token
                         }
+                    },
+                    update: {
+                        method: 'PATCH',
+                        isArray: false,
+                        headers: {
+                            'Authorization': 'Token ' + token
+                        }
                     }
                 });
             }
