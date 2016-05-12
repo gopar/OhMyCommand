@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from apps.commands.models import Command
+
+
+class CommandAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Command, CommandAdmin)
