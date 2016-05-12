@@ -67,47 +67,51 @@
     </div>
 </div>
 
-<table class="table table-responsive table-striped table-bordered">
-    <thead>
-        <tr>
-            <th>Command</th>
-            <th>OS</th>
-            <th>Version</th>
-            <th>Note</th>
-            <th>Operations</th>
-        </tr>
-    </thead>
-    <tr ng-repeat="command in vm.commands | orderBy:'-id' | limitTo:quantity | filter:query ">
-        <td>
-            <a href="" ng-click="vm.copyCommand(command)" data-toggle="modal"
-               data-target="#updateCommandModal"><div ng-bind="command.command"></div></a>
-        </td>
-        <td>
-            {{ command.os }}
-        </td>
-        <td>
-            {{ command.version }}
-        </td>
-        <td>
-            {{ command.note }}
-        </td>
-        <td>
-            <center>
-                <button class="btn btn-default" title="Delete">
-                    <a href="" ng-click="vm.deleteCommand(command)">
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    </a>
-                </button>
-                &nbsp;&nbsp;
-                <button class="btn btn-default" title="Copy command to clipboard">
-                    <a href="" clipboard text="command.command">
-                        <i class="fa fa-clipboard" aria-hidden="true"></i>
-                    </a>
-                </button>
-            </center>
-        </td>
-    </tr>
-</table>
+<div class="jumbotron">
+    <div class="container">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>OS</th>
+                    <th>Version</th>
+                    <th>Note</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="command in vm.commands | orderBy:'-id' | limitTo:quantity | filter:query ">
+                <td>
+                    <a href="" ng-click="vm.copyCommand(command)" data-toggle="modal"
+                       data-target="#updateCommandModal"><div ng-bind="command.command"></div></a>
+                </td>
+                <td>
+                    {{ command.os }}
+                </td>
+                <td>
+                    {{ command.version }}
+                </td>
+                <td>
+                    {{ command.note }}
+                </td>
+                <td>
+                    <center>
+                        <button class="btn btn-default" title="Delete">
+                            <a href="" ng-click="vm.deleteCommand(command)">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </a>
+                        </button>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-default" title="Copy command to clipboard">
+                            <a href="" clipboard text="command.command">
+                                <i class="fa fa-clipboard" aria-hidden="true"></i>
+                            </a>
+                        </button>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 
 <!-- Modal -->
 <div id="updateCommandModal" class="modal fade" role="dialog">

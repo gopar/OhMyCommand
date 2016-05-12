@@ -1,1 +1,56 @@
-<h1>Daniel Gopar</h1>
+<div class="jumbotron">
+    <div class="container" ng-controller="AuthController as vm">
+        <div ng-if="!vm.isLoggedIn()">
+            <h1>Welcome to <i>Oh My Command!</i></h1>
+            <p>Hello, <i>Oh My Command!</i>, or OMC for short, is a site that lets you store commands that you frequently use
+                or don't ever want to forget! And it's all for the very low cost of <b><i>Free!</i></b></p>
+            <p><a class="btn btn-primary btn-lg" href="#/register/" role="button">Register! &raquo;</a></p>
+        </div>
+
+        <div ng-if="vm.isLoggedIn()">
+            <h1>Welcome <i>{{ vm.$storage.username }}</i></h1>
+            <p>Looks like you're already logged in! Why don't you go and checkout your commands? :D</p>
+            <p><a class="btn btn-primary btn-lg" href="#/commands/" role="button">Check commands! &raquo;</a></p>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Who built this site?</h2>
+            <p>
+                Well I'm glad you asked! My name is Daniel Gopar, I'm basically a self-taught programmer and this site
+                is a way to see what I could do on weekend with Django. I got to say that I seriously love Python and
+                Django was really awesome to learn. I worked mostly on the backend and added Bootstrap for some default
+                styling, cause you know "Something is better than nothing". </p>
+
+            <p> Anyways, You can read my
+                <a href="http://pygopar.com/">blog</a>, look at video tutorials I've made on
+                <a href="https://www.youtube.com/channel/UCCRdRbI93UGW0AZttVH3SbA">YouTube</a> or checkout my
+                <a href="https://github.com/gopar/">GitHub</a> account. Or if you want to get in touch, just send me and email.
+            </p>
+            <b><p>gopardaniel@yahoo.com</p></b>
+            <p>Just replace 'yahoo' with 'gmail' and you're set. I do have a yahoo account but I don't use it that much.</p>
+        </div>
+        <div class="col-md-4">
+            <h2> How is this site built?</h2>
+            <p> This site is built using <a href="https://www.djangoproject.com/">Django</a>, an awesome Python web framework,
+                <a href="https://angularjs.org/">AngularJS</a>, A Front End Javascript framework,
+                and <a href="https://getbootstrap.com/">Twitter Bootstrap</a>, an easy way to make sites friendly and pretty.
+                For building the API I used <a href="http://django-rest-framework.org">Django Rest Framework (DRF)</a>,
+                which makes it easy to implement and API over an existing database and models. </p>
+            <p>There is even an android client thanks to the API! Go check it out \o/</p>
+            <p><button class="btn btn-default" role="button"> Get app here &raquo;</button></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Can I have my own version of this?</h2>
+            <p><b>Absolutely!</b></p>
+            <p>Everything that was made into creating this website can be found in my GitHub repository.
+                Just install all the requirements and you're good to go. Also feel free to fix/report bugs
+                or even make a PR!</p>
+            <p><a class="btn btn-default" href="https://github.com/gopar/OhMyCommand" role="button">GitHub Repo &raquo;</a></p>
+        </div>
+    </div>
+</div>

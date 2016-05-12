@@ -24,6 +24,7 @@ def populate():
     add_command('tree', user, 'L', '1.0',
                 'List all directories in a tree structure')
     add_command('rm -rf', user, 'L', note='Deletes everything \o/')
+    add_command('ls -alh', user, 'L', note='LISTS ALL THINGS')
 
 
 def add_user(first_name, last_name, username, email, password):

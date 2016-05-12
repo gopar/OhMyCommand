@@ -15,6 +15,7 @@
         vm.register = register;
         vm.isLoggedIn = isLoggedIn;
         // TODO: Save all these in $localStorage
+        vm.$storage = $localStorage;
         vm.user = {
             username: '',
             email: '',
