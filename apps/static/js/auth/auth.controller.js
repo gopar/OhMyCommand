@@ -48,6 +48,7 @@
                 .then(function(response) {
                     $localStorage.token = response.token;
                     $localStorage.username = user.username;
+                    $location.path('/commands');
                 })
                 .catch(function(error) {
                     console.log(error);
